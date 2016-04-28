@@ -10,7 +10,6 @@ const botService = new skype.BotService({
 const bot = new Bot(botService);
 const server = restify.createServer();
 server.use(skype.ensureHttps(true));
-server.use(skype.verifySkypeCert());
 server.post('/v1/calls', skype.incomingCallHandler(botService));
 server.post('/v1/callback', skype.incomingCallbackHandler(botService));
 const port = process.env.PORT || 8000;
