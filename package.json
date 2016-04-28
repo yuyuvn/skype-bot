@@ -1,0 +1,26 @@
+{
+  "name": "skype-bot",
+  "version": "1.0.0",
+  "description": "A bot which auto accept incoming call",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuyuvn/skype-bot.git"
+  },
+  "author": "Clicia Scarlet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuyuvn/skype-bot/issues"
+  },
+  "homepage": "https://github.com/yuyuvn/skype-bot#readme",
+  "dependencies": {
+    "restify": "^4.0.4",
+    "skype-sdk": "./skype-sdk.tar.gz"
+  },
+  "engines": {
+    "node": ">=5.6.0"
+  }
+}
