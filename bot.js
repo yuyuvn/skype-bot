@@ -6,6 +6,8 @@ const skype = require('skype-sdk');
 class Bot {
   constructor(botService) {
     botService.onIncomingCall(this.onIncomingCall.bind(this));
+    botService.onPlayPromptCompleted(this.onAnswerCompleted.bind(this));
+    botService.onAnswerCompleted(this.onAnswerCompleted.bind(this));
   }
 
   onIncomingCall(incomingCall, workflow, callback) {
@@ -17,6 +19,23 @@ class Bot {
       })
     ];
 
+    callback(null, workflow);
+  }
+
+  onAnswerCompleted(answerCompleted, workflow, callback) {
+    debug('Received answer:\n' + inspect(answerCompleted, { depth: 5 }));
+
+    workflow.actions = [
+      new skype.PlayPrompt({
+        operationId: uuid.v4(),
+        prompts: [
+          new skype.Prompt({
+            fileUri: process.env.SILENT_FILE_URL,
+            silenceLengthInMilliSeconds: 60
+          })
+        ]
+      })
+    ];
     callback(null, workflow);
   }
 }
